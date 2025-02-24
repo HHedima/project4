@@ -1,10 +1,14 @@
 package edu.guilford;
 
+import java.util.Random;
+
 public abstract class Creature {
     private double size = 1.0;
     private double growthRate = 0.1;
     private boolean alive = true;
     private int age = 0;
+    private int lifeSpan = 100;
+    private Random rand = new Random();
 
     // constructor
     public Creature(double size, double growthRate) {
@@ -30,6 +34,11 @@ public abstract class Creature {
      */
     public void simulateDay() {
         age++;
+        if (age > lifeSpan) {
+            if (rand.nextDouble() < 0.1) {
+                die();
+            }
+        }
         changeSize(growthRate);
     }
 

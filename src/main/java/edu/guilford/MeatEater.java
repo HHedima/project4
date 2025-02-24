@@ -3,38 +3,32 @@ package edu.guilford;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class PlantEater extends Critter {
+public class MeatEater extends Critter {
     private Random rand = new Random();
-    private ArrayList<Plant> food = new ArrayList<>();
+    private ArrayList<PlantEater> food = new ArrayList<>();
 
     // constructor
-    public PlantEater(double size, double growthRate, double foodNeed, ArrayList<Plant> food) {
+    public MeatEater(double size, double growthRate, double foodNeed, ArrayList<PlantEater> food) {
         super(size, growthRate, foodNeed);
         this.food = food;
     }
 
-    /**
-     * The size of the PlantEater is decreased by an ammount 
-     */
-    public void chewedOn(double ammount) {
-        changeSize(-ammount);
-    }
 
     /*
-     * Eats a plant
-     * Cannot eat more than half the size of the plant
+     * Eats a plantEater
+     * Cannot eat more than half the size of the plantEater
      * Cannot eat more than the amount of food still needed
      */
-    public void chew(Plant plant) {
+    public void chew(PlantEater plantEater) {
         double minChewAmount = (stillNeed() * 0.1);
-        double maxChewAmount = (plant.getSize() * 0.5);
+        double maxChewAmount = (plantEater.getSize() * 0.5);
         double eating = 0;
 
         // if already full, dont eat
         if (stillNeed() <= 0) {
             return;
         }
-
+        
         // cant eat more than needed
         if (minChewAmount > stillNeed() || maxChewAmount > stillNeed()) {
             minChewAmount = stillNeed();
@@ -58,27 +52,26 @@ public class PlantEater extends Critter {
         }
 
         eat(eating);
-        plant.chewedOn(eating);
+        plantEater.chewedOn(eating);
     }
 
-    // Simulates a day in the life of a plant eater
-    
-    /**
-     * Simulates a day in the life of a PlantEater.
-     * The PlantEater will chew a random amount of food within a specified range.
-     * The range is determined by the size of the food list.
-     * After chewing, it prints out the amount of food still needed.
-     * Finally, it calls the simulateDay method from the superclass.
-     */
+    // Simulates a day in the life of a meat eater
+    @Override
     public void simulateDay() {
-        // how many plants the plantEater can eat
-        int minPlants = (int) (food.size() * 0.005);
-        int maxPlants = (int) (food.size() * 0.02);
 
-        // chew a random amount from the plants
-        for (int i = 0; i < rand.nextInt(minPlants, maxPlants); i++) {
-            chew(food.get(rand.nextInt(0, food.size() - 1)));
+        // chase n plantEaters
+        if (food.size() != 0) {
+            for (int n = 0; n < 2; n++) {
+                PlantEater plantEater = food.get(rand.nextInt(food.size()));
+                // chance to catch a plantEater
+                if (rand.nextDouble() < 0.50) {
+                    chew(plantEater);
+                    plantEater.die();
+                }
+            }
         }
+
+
 
         super.simulateDay();
 
@@ -87,17 +80,16 @@ public class PlantEater extends Critter {
 
     }
 
-    // getters and setters
-    public ArrayList<Plant> getFood() {
+     // getters and setters
+     public ArrayList<PlantEater> getFood() {
         return food;
     }
 
-    public void setFood(ArrayList<Plant> food) {
+    public void setFood(ArrayList<PlantEater> food) {
         this.food = food;
     }
 
-    // toString
-    @Override
+    @Override   
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("PlantEater{");
