@@ -70,9 +70,21 @@ public abstract class Creature {
         return age;
     }
 
+    public int getLifeSpan() {
+        return lifeSpan;
+    }
+
     // setters
     public void setGrowthRate(double newGrowthRate) {
         this.growthRate = newGrowthRate;
+    }
+
+    public void setSize(double newSize) {
+        this.size = newSize;
+    }
+
+    public void setLifeSpan(int newLifeSpan) {
+        this.lifeSpan = newLifeSpan;
     }
 
         // toString

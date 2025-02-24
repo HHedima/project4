@@ -20,6 +20,9 @@ public class Main {
         for (int i = 0; i < 2000; i++) {
             Double size = 300 + rand.nextDouble(-50, 50);
             plants.add(new Plant(size, 5));
+
+            //  make plants live longer
+            plants.get(i).setLifeSpan(10000);
         }
         
         // create one plantEater
@@ -50,6 +53,9 @@ public class Main {
         for (int i = 0; i < 300; i++) {
             Double size = 1000 + rand.nextDouble(-100, 100);
             plantEaters.add(new PlantEater(size, 3, 50, plants));
+
+            //  make plantEaters live longer
+            plantEaters.get(i).setLifeSpan(10000);
         }
 
         // runs as long as there are still PlantEaters alive
@@ -125,6 +131,9 @@ public class Main {
         for (int i = 0; i < 2000; i++) {
             Double size = 300 + rand.nextDouble(-50, 50);
             plants2.add(new Plant(size, 5));
+
+            // plants lifeSpan
+            plants2.get(i).setLifeSpan(10000);
         }
 
         // create 300 PlantEaters
@@ -132,6 +141,9 @@ public class Main {
         for (int i = 0; i < 300; i++) {
             Double size = 1000 + rand.nextDouble(-100, 100);
             plantEaters2.add(new PlantEater(size, 3, 50, plants2));
+
+            // plantEaters lifeSpan
+            plantEaters2.get(i).setLifeSpan(10000);
         }
 
         // create 10 MeatEaters
@@ -139,6 +151,9 @@ public class Main {
         for (int i = 0; i < 10; i++) {
             Double size = 1000 + rand.nextDouble(-100, 100);
             meatEaters.add(new MeatEater(size, 3, 50, plantEaters2));
+
+            // meatEaters lifeSpan
+            meatEaters.get(i).setLifeSpan(10000);
         }
 
         // runs as long as there are still PlantEaters or MeatEaters alive
@@ -172,7 +187,7 @@ public class Main {
             }
 
             // 30% chance to add a new PlantEater
-            if (rand.nextDouble() < 0.3) {
+            if (rand.nextDouble() < 0.4) {
             Double size = 1000 + rand.nextDouble(-100, 100);
             plantEaters2.add(new PlantEater(size, 3, 50, plants2));
             }
