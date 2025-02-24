@@ -28,7 +28,7 @@ public abstract class Creature {
      * Simulates a day in the life of a creature
      * @return
      */
-    public void SimulateDay() {
+    public void simulateDay() {
         age++;
         changeSize(growthRate);
     }

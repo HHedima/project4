@@ -20,12 +20,13 @@ public abstract class Critter extends Creature {
      * @return
      */
     @Override
-    public void SimulateDay() {
+    public void simulateDay() {
         if (foodEaten < foodNeed) {
             die();
         } else {
             foodEaten = 0;
         }
+        super.simulateDay();
     }
 
     /**
@@ -52,6 +53,10 @@ public abstract class Critter extends Creature {
 
     public double getFoodEaten() {
         return foodEaten;
+    }
+
+    public void setFoodEaten(double foodEaten) {
+        this.foodEaten = foodEaten;
     }
 
         // toString

@@ -2,7 +2,12 @@ package edu.guilford;
 
 public class Plant extends Creature {
 
-    // constructor
+    /**
+     * Constructs a new Plant object with the specified size and growth rate.
+     *
+     * @param size the size of the plant
+     * @param growthRate the growth rate of the plant
+     */
     public Plant(double size, double growthRate) {
         super(size, growthRate);
     }
