@@ -7,7 +7,7 @@ public abstract class Creature {
     private double growthRate = 0.1;
     private boolean alive = true;
     private int age = 0;
-    private int lifeSpan = 100;
+    private int lifeSpan = Integer.MAX_VALUE;
     private Random rand = new Random();
 
     // constructor

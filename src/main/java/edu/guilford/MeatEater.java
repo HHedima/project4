@@ -16,12 +16,10 @@ public class MeatEater extends Critter {
 
     /*
      * Eats a plantEater
-     * Cannot eat more than half the size of the plantEater
      * Cannot eat more than the amount of food still needed
      */
     public void chew(PlantEater plantEater) {
-        double minChewAmount = (stillNeed() * 0.1);
-        double maxChewAmount = (plantEater.getSize() * 0.5);
+        double ChewAmount = (plantEater.getSize());
         double eating = 0;
 
         // if already full, dont eat
@@ -30,21 +28,14 @@ public class MeatEater extends Critter {
         }
         
         // cant eat more than needed
-        if (minChewAmount > stillNeed() || maxChewAmount > stillNeed()) {
-            minChewAmount = stillNeed();
-        }
-
-        // min cant be greater than max
-        if (minChewAmount > maxChewAmount) {
-            minChewAmount = maxChewAmount;
-        }
+        ChewAmount = stillNeed();
 
         // exit if eating nothing
-        if (maxChewAmount <= 0) {
+        if (ChewAmount <= 0) {
             return;
         }
         
-        eating = minChewAmount + (maxChewAmount - minChewAmount) * rand.nextDouble();
+        eating = ChewAmount;
 
         // cant eat if full
         if (eating > stillNeed()) {

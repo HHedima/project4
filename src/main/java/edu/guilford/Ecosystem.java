@@ -3,7 +3,7 @@ package edu.guilford;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Main {
+public class Ecosystem {
     public static void main(String[] args) {
         Random rand = new Random();
 
@@ -20,9 +20,6 @@ public class Main {
         for (int i = 0; i < 2000; i++) {
             Double size = 300 + rand.nextDouble(-50, 50);
             plants.add(new Plant(size, 5));
-
-            //  make plants live longer
-            plants.get(i).setLifeSpan(10000);
         }
         
         // create one plantEater
@@ -53,9 +50,6 @@ public class Main {
         for (int i = 0; i < 300; i++) {
             Double size = 1000 + rand.nextDouble(-100, 100);
             plantEaters.add(new PlantEater(size, 3, 50, plants));
-
-            //  make plantEaters live longer
-            plantEaters.get(i).setLifeSpan(10000);
         }
 
         // runs as long as there are still PlantEaters alive
@@ -131,9 +125,6 @@ public class Main {
         for (int i = 0; i < 2000; i++) {
             Double size = 300 + rand.nextDouble(-50, 50);
             plants2.add(new Plant(size, 5));
-
-            // plants lifeSpan
-            plants2.get(i).setLifeSpan(10000);
         }
 
         // create 300 PlantEaters
@@ -141,19 +132,13 @@ public class Main {
         for (int i = 0; i < 300; i++) {
             Double size = 1000 + rand.nextDouble(-100, 100);
             plantEaters2.add(new PlantEater(size, 3, 50, plants2));
-
-            // plantEaters lifeSpan
-            plantEaters2.get(i).setLifeSpan(10000);
         }
 
-        // create 10 MeatEaters
+        // create MeatEaters
         ArrayList<MeatEater> meatEaters = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 30; i++) {
             Double size = 1000 + rand.nextDouble(-100, 100);
             meatEaters.add(new MeatEater(size, 3, 50, plantEaters2));
-
-            // meatEaters lifeSpan
-            meatEaters.get(i).setLifeSpan(10000);
         }
 
         // runs as long as there are still PlantEaters or MeatEaters alive
@@ -180,20 +165,20 @@ public class Main {
             plant.simulateDay();
             }
 
-            // 5% chance to add a new Plant
-            if (rand.nextDouble() < 0.05) {
+            // chance to add a new Plant
+            if (rand.nextDouble() < 0.1) {
             Double size = 300 + rand.nextDouble(-50, 50);
             plants2.add(new Plant(size, 5));
             }
 
-            // 30% chance to add a new PlantEater
-            if (rand.nextDouble() < 0.4) {
+            // chance to add a new PlantEater
+            if (rand.nextDouble() < 0.7) {
             Double size = 1000 + rand.nextDouble(-100, 100);
             plantEaters2.add(new PlantEater(size, 3, 50, plants2));
             }
 
-            // 70% chance to add a new MeatEater
-            if (rand.nextDouble() < 0.7) {
+            // chance to add a new MeatEater
+            if (rand.nextDouble() < 0.8) {
             Double size = 1000 + rand.nextDouble(-100, 100);
             meatEaters.add(new MeatEater(size, 3, 50, plantEaters2));
             }
